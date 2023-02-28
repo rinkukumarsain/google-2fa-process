@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Input field</title>
+  <link rel="stylesheet" href="otpStyle.css">
+</head>
+
+<body>
+  <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autofocus Field</title>
+    <link rel="stylesheet" type="text/css" href="otp.css">
+</head>
+<body>
+    <%- include('partial/sidebare')%> 
+    <form action="/otpMatched" method="post" style="    height: 80%;
+    width: 48%;
+    position: relative;
+    left: 30%;
+    top: 5%;"> 
+    <div class="container"   style="background: #9053c7"  >
+        <h1>ENTER OTP</h1>
+        <div class="userInput">
+            <input type="text" name="otp" id='ist' maxlength="1" onkeyup="clickEvent(this,'sec')">
+            <input type="text" name="otp" id="sec" maxlength="1" onkeyup="clickEvent(this,'third')">
+            <input type="text" name="otp" id="third" maxlength="1" onkeyup="clickEvent(this,'fourth')">
+            <input type="text" name="otp" id="fourth" maxlength="1" onkeyup="clickEvent(this,'fifth')">
+            <input type="text" name="otp" id="fifth" maxlength="1">
+        </div>
+        <button>CONFIRM</button>
+    </div>
+  </form>
+</body>
+</html>
+ <script >
+    function clickEvent(first,last){
+      if(first.value.length){
+        document.getElementById(last).focus();
+      }
+    }
+ </script>
+</body>
+
+</html>

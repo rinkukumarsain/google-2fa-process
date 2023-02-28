@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @charset "utf-8";
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* Common
+   ============================================== */
+html {
+  font-family: "Open Sans";
+  min-height: 100%;
+  min-width: 320px;
+}
+body {
+  background-color: #663faa;
+  background: -ms-linear-gradient(top left, #663faa 0%, #585fd5 100%);
+  background: -webkit-linear-gradient(top left, #663faa, #585fd5);
+  background: -o-linear-gradient(top left, #663faa, #585fd5);
+  background: -moz-linear-gradient(top left, #663faa, #585fd5);
+  background: linear-gradient(top left, #663faa, #585fd5);
+  background-repeat: no-repeat;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  min-width: 100%;
+  min-height: 100%;
+  overflow: scroll;
+  padding: 30px 0;
+}
+.container {
+  display: block;
+  background: #fff;
+  width: 320px;
+  min-height: 400px;
+  border-radius: 3px;
+  margin: 0 auto;
+  padding: 30px;
+}
+.container h1 {
+  position: relative;
+  display: inline-block;
+  color: #000;
+  font-size: 2em;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 20px;
+  padding: 0;
+}
+.container h1:after {
+  display: block;
+  background: #000;
+  content: '';
+  height: 3px;
+  width: 50%;
+  margin: 20px auto 0;
+  padding: 0;
+}
+.form {
+  display: block;
+}
+.form__group {
+  margin: 10px 0 0;
+}
+.form__group--error.form__pincode > input {
+  background-color: #eb3b3b;
+}
+.form__group--error.form__pincode > input[disabled] {
+  background-color: #eb3b3b;
+  color: #fff;
+  opacity: 1;
+}
+.form__group--success.form__pincode > input {
+  background-color: #32c832;
+}
+.form__group--success.form__pincode > input[disabled] {
+  background-color: #32c832;
+  color: #fff;
+  opacity: 1;
+}
+.form__pincode {
+  display: block;
+  width: 100%;
+  margin: 10px auto 20px;
+  padding: 0;
+}
+.form__pincode:before,
+.form__pincode:after {
+  display: table;
+  content: '';
+}
+.form__pincode:after {
+  clear: both;
+}
+.form__pincode > label {
+  display: block;
+  text-align: center;
+  margin: 10px 0;
+}
+.form__pincode > input[type="number"] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.form__pincode > input {
+  display: inline-block;
+  float: left;
+  width: 15%;
+  height: 50px;
+  line-height: 48px;
+  text-align: center;
+  font-size: 2em;
+  color: #181819;
+  border: 0;
+  border-bottom: 2px solid rgba(0,0,0,0.3);
+  border-radius: 2px 2px 0 0;
+  transition: background-color 0.3s, color 0.3s, opacity 0.3s;
+  cursor: default;
+  user-select: none;
+  margin: 0;
+  margin-top: 10px;
+  margin-right: 2%;
+  padding: 0;
+}
+.form__pincode > input:focus {
+  outline: 0;
+  box-shadow: none;
+  border-color: #1486f0;
+  animation: border-pulsate 1.5s infinite;
+  -webkit-tap-highlight-color: transparent;
+}
+.form__pincode > input:last-child {
+  margin-right: 0;
+}
+.form__pincode > input[disabled] {
+  background: #eee;
+  opacity: 1;
+}
+.form__buttons {
+  text-align: center;
+  margin: 0 auto;
+  padding: 10px 0 0;
+}
+/* Button
+   ============================================== */
+.button {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  outline: 0;
+  cursor: pointer;
+  height: 50px;
+  line-height: 50px;
+  margin: 0;
+  padding: 0 20px;
+/* primary */
+}
+.button--primary {
+  background-color: #4776e6;
+  color: #fff;
+  line-height: 48px;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+  -webkit-touch-callout: none;
+
+/* disabled */
+}
+.button--primary:focus,
+.button--primary:hover {
+  background-color: #2d62e2;
+  color: #fff;
+}
+.button--primary:active {
+  background-color: #1d53d4;
+  color: #fff;
+  box-shadow: inset 0 0 4px 2px rgba(0,0,0,0.1);
+}
+.button--primary[disabled] {
+  background-color: #4776e6;
+  user-select: none;
+  pointer-events: none;
+  cursor: not-allowed;
+  -moz-opacity: 0.3;
+  -khtml-opacity: 0.3;
+  opacity: 0.3;
+}
+/* Placeholder
+   ============================================== */
+/* Chrome/Opera/Safari */
+::-webkit-input-placeholder {
+  color: inherit;
+  opacity: 0.7;
+}
+/* Firefox 19+ */
+::-moz-placeholder {
+  color: inherit;
+  opacity: 0.7;
+}
+/* IE 10+ */
+:-ms-input-placeholder {
+  color: inherit;
+  opacity: 0.7;
+}
+/* Firefox 18- */
+:-moz-placeholder {
+  color: inherit;
+  opacity: 0.7;
+}
+/* Animations
+   ============================================== */
+@-moz-keyframes border-pulsate {
+  0% {
+    border-color: #1486f0;
+  }
+  50% {
+    border-color: rgba(0,0,0,0.3);
+  }
+  100% {
+    border-color: #1486f0;
+  }
+}
+@-webkit-keyframes border-pulsate {
+  0% {
+    border-color: #1486f0;
+  }
+  50% {
+    border-color: rgba(0,0,0,0.3);
+  }
+  100% {
+    border-color: #1486f0;
+  }
+}
+@-o-keyframes border-pulsate {
+  0% {
+    border-color: #1486f0;
+  }
+  50% {
+    border-color: rgba(0,0,0,0.3);
+  }
+  100% {
+    border-color: #1486f0;
+  }
+}
+@keyframes border-pulsate {
+  0% {
+    border-color: #1486f0;
+  }
+  50% {
+    border-color: rgba(0,0,0,0.3);
+  }
+  100% {
+    border-color: #1486f0;
+  }
+}
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <form id="form" method="post"  action="verfiedTokenBeforeLoginPost">
+          <h1>TWO-FACTOR AUTHENTICATION</h1>
+          <div class="form__group form__pincode">
+            <label>Enter 6-digit code from your authenticator application</label>
+            <input type="tel" name="otp" maxlength="1" pattern="[\d]*" tabindex="1" placeholder="·" autocomplete="on">
+            <input type="tel" name="otp" maxlength="1" pattern="[\d]*" tabindex="2" placeholder="·" autocomplete="on">
+            <input type="tel" name="otp" maxlength="1" pattern="[\d]*" tabindex="3" placeholder="·" autocomplete="off">
+            <input type="tel" name="otp" maxlength="1" pattern="[\d]*" tabindex="4" placeholder="·" autocomplete="off">
+            <input type="tel" name="otp" maxlength="1" pattern="[\d]*" tabindex="5" placeholder="·" autocomplete="off">
+            <input type="tel" name="otp" maxlength="1" pattern="[\d]*" tabindex="6" placeholder="·" autocomplete="off">
+          </div>
+          <div class="form__buttons">
+            <button type="submit" class="button button--primary" >Continue</button>
+          </div>
+        </form>
+      </div>
+
+      <script>
+        $(function () {
+  // setting
+  var debug = false;
+
+  // fake ajax request
+  $.mockjax({
+    url: "/api/tfa",
+    dataType: "json",
+    response: function (settings) {
+      this.responseText = {
+        ok: Math.random() >= 0.5 // random true/false
+      };
+    },
+    responseTime: 1000
+  });
+
+  // pincode
+  var _pincode = [];
+  _req = null;
+
+  // main form
+  var $form = $("#form");
+
+  // pincode group
+  var $group = $form.find(".form__pincode");
+
+  // all input fields
+  var $inputs = $group.find(":input");
+
+  // input fields
+  var $first = $form.find("[name=pincode-1]"),
+    $second = $form.find("[name=pincode-2]"),
+    $third = $form.find("[name=pincode-3]"),
+    $fourth = $form.find("[name=pincode-4]"),
+    $fifth = $form.find("[name=pincode-5]"),
+    $sixth = $form.find("[name=pincode-6]");
+
+  // submit button
+  var $button = $form.find(".button--primary");
+
+  // all fields
+  $inputs
+    .on("keyup", function (event) {
+      var code = event.keyCode || event.which;
+
+      if (code === 9 && !event.shiftKey) {
+        // prevent default event
+        event.preventDefault();
+
+        // focus to submit button
+        $(".button--primary").focus();
+      }
+    })
+    .inputmask({
+      mask: "9",
+      placeholder: "",
+      showMaskOnHover: false,
+      showMaskOnFocus: false,
+      clearIncomplete: true,
+      onincomplete: function () {
+        !debug || console.log("inputmask incomplete");
+      },
+      oncleared: function () {
+        var index = $inputs.index(this),
+          prev = index - 1,
+          next = index + 1;
+
+        if (prev >= 0) {
+          // clear field
+          $inputs.eq(prev).val("");
+
+          // focus field
+          $inputs.eq(prev).focus();
+
+          // remove last nubmer
+          _pincode.splice(-1, 1);
+        } else {
+          return false;
+        }
+
+        !debug || console.log("[oncleared]", prev, index, next);
+      },
+      onKeyValidation: function (key, result) {
+        var index = $inputs.index(this),
+          prev = index - 1,
+          next = index + 1;
+
+        // focus to next field
+        if (prev < 6) {
+          $inputs.eq(next).focus();
+        }
+
+        !debug ||
+          console.log("[onKeyValidation]", index, key, result, _pincode);
+      },
+      onBeforePaste: function (data, opts) {
+        $.each(data.split(""), function (index, value) {
+          // set value
+          $inputs.eq(index).val(value);
+
+          !debug || console.log("[onBeforePaste:each]", index, value);
+        });
+
+        return false;
+      }
+    });
+
+  // first field
+  $("[name=pincode-1]")
+    .on("focus", function (event) {
+      !debug || console.log("[1:focus]", _pincode);
+    })
+    .inputmask({
+      oncomplete: function () {
+        // add first character
+        _pincode.push($(this).val());
+
+        // focus to second field
+        $("[name=pincode-2]").focus();
+
+        !debug || console.log("[1:oncomplete]", _pincode);
+      }
+    });
+
+  // second field
+  $("[name=pincode-2]")
+    .on("focus", function (event) {
+      if (!($first.val().trim() !== "")) {
+        // prevent default
+        event.preventDefault();
+
+        // reset pincode
+        _pincode = [];
+
+        // handle each field
+        $inputs.each(function () {
+          // clear each field
+          $(this).val("");
+        });
+
+        // focus to first field
+        $first.focus();
+      }
+
+      !debug || console.log("[2:focus]", _pincode);
+    })
+    .inputmask({
+      oncomplete: function () {
+        // add second character
+        _pincode.push($(this).val());
+
+        // focus to third field
+        $("[name=pincode-3]").focus();
+
+        !debug || console.log("[2:oncomplete]", _pincode);
+      }
+    });
+
+  // third field
+  $("[name=pincode-3]")
+    .on("focus", function (event) {
+      if (!($first.val().trim() !== "" && $second.val().trim() !== "")) {
+        // prevent default
+        event.preventDefault();
+
+        // reset pincode
+        _pincode = [];
+
+        // handle each field
+        $inputs.each(function () {
+          // clear each field
+          $(this).val("");
+        });
+
+        // focus to first field
+        $first.focus();
+      }
+
+      !debug || console.log("[3:focus]", _pincode);
+    })
+    .inputmask({
+      oncomplete: function () {
+        // add third character
+        _pincode.push($(this).val());
+
+        // focus to fourth field
+        $("[name=pincode-4]").focus();
+
+        !debug || console.log("[3:oncomplete]", _pincode);
+      }
+    });
+
+  // fourth field
+  $("[name=pincode-4]")
+    .on("focus", function (event) {
+      if (
+        !(
+          $first.val().trim() !== "" &&
+          $second.val().trim() !== "" &&
+          $third.val().trim() !== ""
+        )
+      ) {
+        // prevent default
+        event.preventDefault();
+
+        // reset pincode
+        _pincode = [];
+
+        // handle each field
+        $inputs.each(function () {
+          // clear each field
+          $(this).val("");
+        });
+
+        // focus to first field
+        $first.focus();
+      }
+
+      !debug || console.log("[4:focus]", _pincode);
+    })
+    .inputmask({
+      oncomplete: function () {
+        // add fo fourth character
+        _pincode.push($(this).val());
+
+        // focus to fifth field
+        $("[name=pincode-5]").focus();
+
+        !debug || console.log("[4:oncomplete]", _pincode);
+      }
+    });
+
+  // fifth field
+  $("[name=pincode-5]")
+    .on("focus", function (event) {
+      if (
+        !(
+          $first.val().trim() !== "" &&
+          $second.val().trim() !== "" &&
+          $third.val().trim() !== "" &&
+          $fourth.val().trim() !== ""
+        )
+      ) {
+        // prevent default
+        event.preventDefault();
+
+        // reset pincode
+        _pincode = [];
+
+        // handle each field
+        $inputs.each(function () {
+          // clear each field
+          $(this).val("");
+        });
+
+        // focus to first field
+        $first.focus();
+      }
+
+      !debug || console.log("[5:focus]", _pincode);
+    })
+    .inputmask({
+      oncomplete: function () {
+        // add fifth character
+        _pincode.push($(this).val());
+
+        // focus to sixth field
+        $("[name=pincode-6]").focus();
+
+        !debug || console.log("[5:oncomplete]", _pincode);
+      }
+    });
+
+  // sixth field
+  $("[name=pincode-6]")
+    .on("focus", function (event) {
+      if (
+        !(
+          $first.val().trim() !== "" &&
+          $second.val().trim() !== "" &&
+          $third.val().trim() !== "" &&
+          $fourth.val().trim() !== "" &&
+          $fifth.val().trim() !== ""
+        )
+      ) {
+        // prevent default
+        event.preventDefault();
+
+        // reset pincode
+        _pincode = [];
+
+        // handle each field
+        $inputs.each(function () {
+          // clear each field
+          $(this).val("");
+        });
+
+        // focus to first field
+        $first.focus();
+      }
+
+      !debug || console.log("[6:focus]", _pincode);
+    })
+    .inputmask({
+      oncomplete: function () {
+        // add sixth character
+        _pincode.push($(this).val());
+
+        // pin length not equal to six characters
+        if (_pincode.length !== 6) {
+          // reset pin
+          _pincode = [];
+
+          // handle each field
+          $inputs.each(function () {
+            // clear each field
+            $(this).val("");
+          });
+
+          // focus to first field
+          $("[name=pincode-1]").focus();
+        } else {
+          // handle each field
+          $inputs.each(function () {
+            // disable field
+            $(this).prop("disabled", true);
+          });
+
+          // send request
+          _req = $.ajax({
+            type: "POST",
+            url: "/api/tfa",
+            data: {
+              code: _pincode.join(""),
+              _csrf: ""
+            }
+          })
+            .done(function (data, textStatus, jqXHR) {
+              try {
+                !debug || console.log("data", data);
+
+                if (data.ok === true) {
+                  $group.addClass("form__group--success");
+                  $button.removeAttr("disabled");
+                }
+
+                if (data.ok === false) {
+                  $group.addClass("form__group--error");
+                }
+              } catch (err) {}
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+              $group.removeClass("form__group--error");
+            })
+            .always(function (dataOrjqXHR, textStatus, jqXHRorErrorThrown) {
+              // reset pin
+              _pincode = [];
+
+              // reset request
+              _req = null;
+
+              setTimeout(function () {
+                // handle each field
+                $inputs.each(function () {
+                  // clear all fields
+                  $(this).val("");
+
+                  // enable all fields
+                  $(this).prop("disabled", false);
+                });
+
+                // remove response status class
+                $group.removeClass("form__group--success form__group--error");
+
+                // disable submit button
+                $button.attr("disabled", true);
+
+                // focus to first field
+                $first.focus();
+              }, 2000);
+            });
+        }
+
+        !debug || console.log("[6:oncomplete]", _pincode);
+      }
+    });
+});
+
+      </script>
+</body>
+</html>
